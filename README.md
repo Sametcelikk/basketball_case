@@ -52,7 +52,7 @@ GPU-accelerated video processing system for player detection, tracking, and cour
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/Sametcelikk/basketball_case.git
 cd basketball_case
 
 # IMPORTANT: Before building, copy ONNX models from the provided zip file to /models directory
@@ -60,8 +60,10 @@ cd basketball_case
 #   - custom-pose-model-2.onnx
 #   - yolov8m-seg.onnx
 
-# Start containers
-docker-compose up --build
+# Build and start containers
+docker compose build
+docker compose up
+
 ```
 
 On first run, TensorRT engine files will be automatically generated from ONNX models (may take 5-10 minutes).
