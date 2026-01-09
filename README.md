@@ -61,8 +61,11 @@ cd basketball_case
 #   - yolov8m-seg.onnx
 
 # Build and start containers
-docker compose build
-docker compose up
+docker compose up --build
+
+# Or separately:
+# docker compose build
+# docker compose up
 
 ```
 
