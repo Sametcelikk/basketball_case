@@ -38,10 +38,15 @@ GPU-accelerated video processing system for player detection, tracking, and cour
 ## Requirements
 
 - Docker >= 20.10
+  - [Installation Guide](https://docs.docker.com/engine/install/)
 - Docker Compose >= 2.0
+  - [Installation Guide](https://docs.docker.com/compose/install/)
 - NVIDIA GPU (CUDA Compute Capability >= 7.5)
+  - [Check GPU Compatibility](https://developer.nvidia.com/cuda-gpus)
 - NVIDIA Container Toolkit >= 1.14.0
+  - [Installation Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 - NVIDIA Driver >= 525.60.13 (minimum for CUDA 12.x)
+  - [Driver Downloads](https://www.nvidia.com/download/index.aspx)
 
 ## Installation and Running
 
@@ -62,11 +67,11 @@ docker-compose up --build
 On first run, TensorRT engine files will be automatically generated from ONNX models (may take 5-10 minutes).
 
 **Access:**
-- Frontend: http://localhost:5173
+- Frontend: http://localhost:5173 or http://127.0.0.1:5173
 
 ## Usage
 
-1. Open `http://localhost:5173` in your browser
+1. Open `http://localhost:5173` or `http://127.0.0.1:5173` in your browser
 2. Select one of the available videos
 3. Click "Process Video" button
 4. Watch or download the video when processing is complete
