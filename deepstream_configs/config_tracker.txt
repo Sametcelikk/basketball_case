@@ -1,0 +1,9 @@
+[tracker]
+tracker-width=640
+tracker-height=640
+gpu-id=0
+
+[player_tracker]
+alpha=0.08
+persistence-frames=15
+max-jump-distance=30.0

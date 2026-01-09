@@ -1,0 +1,47 @@
+services:
+  backend:
+    build: .
+    container_name: basketball_deepstream
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+      - ./deepstream_configs:/app/deepstream_configs
+      - ./static:/app/static
+      - ./models:/app/models
+    healthcheck:
+      test: ["CMD", "test", "-f", "/app/models/custom-pose-model-2.engine", "-a", "-f", "/app/models/yolov8m-seg.engine"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+      start_period: 600s
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: basketball_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - ./frontend/index.html:/app/index.html
+      - ./frontend/vite.config.ts:/app/vite.config.ts
+      - ./frontend/tsconfig.json:/app/tsconfig.json
+      - ./frontend/tsconfig.app.json:/app/tsconfig.app.json
+      - ./frontend/components.json:/app/components.json
+    environment:
+      - VITE_API_URL=http://127.0.0.1:8000
+    depends_on:
+      backend:
+        condition: service_healthy

@@ -1,0 +1,9 @@
+[model]
+engine-file=models/custom-pose-model-2.engine
+confidence-threshold=0.2
+
+[processing]
+gpu-id=0
+batch-size=1
+
+
